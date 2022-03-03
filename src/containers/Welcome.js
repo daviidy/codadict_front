@@ -1,8 +1,13 @@
 import React from 'react';
+import Menu from '../components/Menu';
+import Slider from '../components/welcome/Slider';
 
 function Welcome() {
   return (
-    <div> Welcome page </div>
+    <>
+      <Menu />
+      <Slider />
+    </>
   );
 }
 
