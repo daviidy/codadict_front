@@ -2,7 +2,7 @@ import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import combineReducers from './reducers/index';
-import { projectsState } from './reducers/projectsReducer';
+import { userState } from './reducers/usersReducer';
 
 const { NODE_ENV } = process.env;
 
@@ -15,7 +15,7 @@ const enableDevTools = NODE_ENV === 'development'
 export default createStore(
   combineReducers,
   {
-    projects: projectsState,
+    users: userState,
   },
   enableDevTools,
 );

@@ -3,7 +3,7 @@ import '../../styles/form.css';
 
 function SignIn() {
   return (
-    <div className="container-fluid h-100">
+    <div className="container-fluid h-100 body">
       <div className="row">
         <div className="col-12">
           <div className="alert alert-success m-auto w-50 mt-3 mb-5">
