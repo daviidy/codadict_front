@@ -1,27 +1,31 @@
 // we import the appropriate action creators
+
+// We import some actions creators
+// They return actions objects
+
 import { signUpError, signUpPending, signUpSuccess } from '../redux/actions';
-import REACT_APP_API_URL from './env';
+import API_URL from './env';
 
 const signUp = data => async dispatch => {
+  // we dispatch the action to the user reducer
   dispatch(signUpPending());
   try {
     const first = await fetch(
-      `${REACT_APP_API_URL}/signup`,
+      `${API_URL}/signup`,
       {
         headers: {
           'Content-Type': 'application/json',
         },
-        mode: 'cors',
+        mode: 'no-cors',
         method: 'POST',
         body: JSON.stringify(data),
       },
     );
     const second = await first.json();
     dispatch(signUpSuccess(second));
-    localStorage.setItem('id', second.id);
-    localStorage.setItem('username', second.username);
-    localStorage.setItem('email', second.email);
-    localStorage.setItem('token', second.admin);
+    localStorage.setItem('username', data.username);
+    localStorage.setItem('email', data.email);
+    localStorage.setItem('token', second.auth_token);
     second.password = data.password;
     return second;
   } catch (error) {

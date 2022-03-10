@@ -1,16 +1,16 @@
 import { signInError, signInPending, signInSuccess } from '../redux/actions';
-import REACT_APP_API_URL from './env';
+import API_URL from './env';
 
 const signIn = data => async dispatch => {
   dispatch(signInPending());
   try {
     const first = await fetch(
-      `${REACT_APP_API_URL}/auth`,
+      `${API_URL}/auth`,
       {
         headers: {
           'Content-Type': 'application/json',
         },
-        mode: 'cors',
+        mode: 'no-cors',
         method: 'POST',
         body: JSON.stringify(data),
       },

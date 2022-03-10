@@ -17,7 +17,7 @@ export const userState = {
   token: '',
 };
 
-const users = (action, state = userState) => {
+const users = (state = userState, action = {}) => {
   switch (action.type) {
     case SIGN_UP_PENDING:
       return {
@@ -89,4 +89,5 @@ export const getUser = state => state.users.user;
 export const getUserPending = state => state.users.pending;
 export const getUserError = state => state.users.error;
 export const getToken = state => state.users.token;
+
 export default users;

@@ -1,7 +1,6 @@
 export const checkUser = () => {
   const token = localStorage.getItem('token');
-  const id = localStorage.getItem('id');
-  if (token !== null && id !== null) {
+  if (token !== null) {
     return true;
   }
 

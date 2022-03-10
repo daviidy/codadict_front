@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Navigate } from 'react-router-dom';
 import signUpAction from '../../modules/signUp';
 import {
-  getToken, getUser, getUserError, getUserPending,
+  getUserPending,
 } from '../../redux/reducers/usersReducer';
 import signInAction from '../../modules/signIn';
 import { checkUser } from '../../modules/checkAuth';
@@ -14,9 +14,6 @@ import Spinner from '../../components/Spinner';
 
 function SignUp({
   signUp,
-  getUser,
-  error,
-  token,
   pending,
   signIn,
 }) {
@@ -96,6 +93,14 @@ function SignUp({
                 </div>
                 <div className="input-group mb-2">
                   <div className="input-group-prepend">
+                    <div className="input-group-text">
+                      @
+                    </div>
+                  </div>
+                  <input name="email" onChange={handleChange} type="email" className="form-control" id="inlineFormInputGroup" placeholder="Email" />
+                </div>
+                <div className="input-group mb-2">
+                  <div className="input-group-prepend">
                     <div className="input-group-text">***</div>
                   </div>
                   <input name="password" onChange={handleChange} type="password" className="form-control" id="inlineFormInputGroup" placeholder="Password" />
@@ -116,10 +121,7 @@ function SignUp({
 }
 
 const mapStateToProps = state => ({
-  error: getUserError(state),
-  getUser: getUser(state),
   pending: getUserPending(state),
-  token: getToken(state),
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -133,16 +135,8 @@ SignUp.propTypes = {
   signUp: PropTypes.func.isRequired,
   signIn: PropTypes.func.isRequired,
   pending: PropTypes.bool,
-  error: PropTypes.string,
-  token: PropTypes.string,
-  getUser: PropTypes.shape({
-    username: PropTypes.string,
-  }),
 };
 
 SignUp.defaultProps = {
   pending: true,
-  error: null,
-  getUser: {},
-  token: '',
 };

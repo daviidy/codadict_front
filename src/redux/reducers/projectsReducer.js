@@ -20,7 +20,7 @@ export const projectsState = {
   error: null,
 };
 
-const projects = (action, state = projectsState) => {
+const projects = (state = projectsState, action = {}) => {
   switch (action.type) {
     case FETCH_PROJECTS_PENDING:
       return {
