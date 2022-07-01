@@ -16,7 +16,7 @@ const signUp = data => async dispatch => {
         headers: {
           'Content-Type': 'application/json',
         },
-        mode: 'no-cors',
+        mode: 'cors',
         method: 'POST',
         body: JSON.stringify(data),
       },

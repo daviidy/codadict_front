@@ -1,21 +1,9 @@
-import { applyMiddleware, createStore } from 'redux';
-import thunk from 'redux-thunk';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import combineReducers from './reducers/index';
-import { userState } from './reducers/usersReducer';
+import { configureStore } from '@reduxjs/toolkit';
+import userReducer from './reducers/users';
 
-const { NODE_ENV } = process.env;
-
-const middlewares = [thunk];
-
-const enableDevTools = NODE_ENV === 'development'
-  ? composeWithDevTools(applyMiddleware(...middlewares))
-  : applyMiddleware(...middlewares);
-
-export default createStore(
-  combineReducers,
-  {
-    users: userState,
+// eslint-disable-next-line import/prefer-default-export
+export const store = configureStore({
+  reducer: {
+    user: userReducer,
   },
-  enableDevTools,
-);
+});

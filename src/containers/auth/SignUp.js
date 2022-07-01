@@ -1,29 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-import signUpAction from '../../modules/signUp';
-import {
-  getUserPending,
-} from '../../redux/reducers/usersReducer';
-import signInAction from '../../modules/signIn';
+
 import { checkUser } from '../../modules/checkAuth';
 import '../../styles/form.css';
 import Spinner from '../../components/Spinner';
 
-function SignUp({
-  signUp,
-  pending,
-  signIn,
-}) {
+function SignUp() {
   // create state for user and redirection
-  const [user, setUser] = useState({
-    username: '',
-    email: '',
-    password: '',
-    passwordConfirmation: '',
-  });
+  const { user } = useSelector(state => state.user);
 
   const [redirect, setRedirect] = useState(false);
 
@@ -120,23 +105,5 @@ function SignUp({
   );
 }
 
-const mapStateToProps = state => ({
-  pending: getUserPending(state),
-});
+export default SignUp;
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  signUp: signUpAction,
-  signIn: signInAction,
-}, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
-
-SignUp.propTypes = {
-  signUp: PropTypes.func.isRequired,
-  signIn: PropTypes.func.isRequired,
-  pending: PropTypes.bool,
-};
-
-SignUp.defaultProps = {
-  pending: true,
-};
